@@ -96,6 +96,7 @@ app.put('/api/courses/:id', function (req, res) {
     var course = courses.find( elem => elem.id === parseInt(req.params.id));
     if (!course){
         res.status(404).send('no course whit id: ' + parseInt(req.params.id));
+        return;
     }
 
     // validate
@@ -111,11 +112,12 @@ app.put('/api/courses/:id', function (req, res) {
     res.send(course);
 });
 
-app.put('/api/courses/:id', function (req, res) {
+app.delete('/api/courses/:id', function (req, res) {
     // look up the course
     var course = courses.find( elem => elem.id === parseInt(req.params.id));
     if (!course){
         res.status(404).send('no course whit id: ' + parseInt(req.params.id));
+        return;
     }
 
     // delete course
