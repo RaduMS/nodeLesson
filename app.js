@@ -36,6 +36,7 @@ console.log("ceva");
 
 // ================= Buidl APIs whit Node and Express =======================
 
+const Joi = require('joi');
 const express = require ('express');
 const app = express();
 app.use(express.json());
@@ -54,7 +55,25 @@ app.get('/api/courses', function (req, res) {
     res.send(courses);
 });
 
-app.post('api/courses', function (req, res) {
+app.post('/api/courses', function (req, res) {
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
+    const result = Joi.validate(req.body, schema);
+    console.log(result);
+
+    if (result.error){
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+
+    // use JOI validation insted of this
+    // if (!req.body.name || req.body.name.length < 3){
+    // //    error 400
+    //     res.status(400).send('Name is require and should have minimum tree character');
+    //     return;
+    // }
+
     const course = {
         id : courses.length + 1,
         name : req.body.name
@@ -72,17 +91,55 @@ app.get('/api/courses/:id', function (req, res) {
     }
 });
 
+app.put('/api/courses/:id', function (req, res) {
+    // look up the course
+    var course = courses.find( elem => elem.id === parseInt(req.params.id));
+    if (!course){
+        res.status(404).send('no course whit id: ' + parseInt(req.params.id));
+    }
+
+    // validate
+    var {error} = validateCourse(req.body);
+    console.log(error);
+    if (error){
+        res.status(400).send(error.details[0].message);
+        return;
+    }
+
+    // update course
+    course.name = req.body.name;
+    res.send(course);
+});
+
+app.put('/api/courses/:id', function (req, res) {
+    // look up the course
+    var course = courses.find( elem => elem.id === parseInt(req.params.id));
+    if (!course){
+        res.status(404).send('no course whit id: ' + parseInt(req.params.id));
+    }
+
+    // delete course
+    var index = courses.indexOf(course);
+    courses.splice(index, 1); 
+
+    res.send(course);
+});
 
 app.get('/api/posts/:year/:month', function (req, res) {
     res.send(req.params);
     res.send(req.query);
-})
+});
 
 app.listen(port , function () {
    console.log(`Listening port: ${port}`);
 });
 
-
+function validateCourse(course) {
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
+    return Joi.validate(course, schema);
+}
 
 
 
