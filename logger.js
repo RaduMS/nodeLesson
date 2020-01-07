@@ -27,4 +27,10 @@ function log(message) {
     emitter.emit('messageLogged', {id: 1, url: "https"});
 }
 
+function log2 (req, res, next){
+    console.log("logger.... din log2 ");
+    next();
+}
+
 module.exports.log = log;
+module.exports.log2 = log2;

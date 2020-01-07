@@ -36,10 +36,33 @@ console.log("ceva");
 
 // ================= Buidl APIs whit Node and Express =======================
 
+const config = require('config');
+const morgan = require('morgan');
+const helmet = require('helmet');
 const Joi = require('joi');
 const express = require ('express');
 const app = express();
+
+var logger = require('./logger');
+console.log(logger);
+
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
+console.log(`Application Name: ${config.get('name')}`);
+console.log(`Application mail: ${config.get('mail.hoast')}`);
+console.log(`Application password: ${config.get('mail.password')}`);
+
+logger.log('asta a fost logat de logger');
 app.use(express.json());
+app.use(express.urlencoded({extended : true}));
+app.use(express.static('public'));
+app.use(helmet());
+app.use(morgan('tiny'));
+app.use(function (req, res, next) {
+    console.log('logger ... ');
+    next();
+});
+app.use(logger.log2);
 const port = process.env.PORT || 3001;
 var courses = [
     {id:1, name: "math"},

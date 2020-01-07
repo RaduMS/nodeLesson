@@ -1,0 +1,11 @@
+npm init => initiaza package.json
+
+npm -save si numele modulului
+
+node <nume de intrare applicatie (app.js)> => pentru a servi sau porni serverul
+
+nodemon <nume de intrare applicatie (app.js)>
+
+set NODE_ENV=development
+
+set app_NODE_ENV=development
