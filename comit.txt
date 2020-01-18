@@ -1,0 +1,4 @@
+- get env development
+- used debugger for node
+- used pug for templating
+- finished "Express- Advanced Topics"

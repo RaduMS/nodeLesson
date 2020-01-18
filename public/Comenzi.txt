@@ -1,11 +1,13 @@
 npm init => initiaza package.json
 
-npm -save si numele modulului
+npm -save nodemon => unde nodemon este numele modulului
 
-node <nume de intrare applicatie (app.js)> => pentru a servi sau porni serverul
+node app.js => pentru a servi sau porni serverul unde app.js e nume de intrare applicatie
+nodemon app.js> => pentru a servi sau porni serverul unde app.js e nume de intrare applicatie
 
-nodemon <nume de intrare applicatie (app.js)>
+set NODE_ENV=development => set e echivalentul lui export la mac
+set app_NODE_ENV=development => [pnetru a seta variabile globale care nu se amesteca cu alte aplicati trecem numele aplicatiei]
 
-set NODE_ENV=development
+set DEBUG=app:startup,app:db => folosit pneturu debuger in node, daca vrei sa pui mai multe pui virgula intre ele
+set DEBUG=app:* => folosesti * pentru a loga toate cu app
 
-set app_NODE_ENV=development

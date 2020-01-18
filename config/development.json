@@ -1,6 +1,7 @@
 {
   "name" : "My express app - Development",
   "mail" : {
-    "hoast" : "dev-mail-server"
+    "hoast" : "dev-mail-server",
+    "password": "secret"
   }
 }
