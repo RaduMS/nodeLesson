@@ -47,6 +47,7 @@ const config = require('config');
 const morgan = require('morgan'); // used to log HTTP request [Third party - Middleware]
 const helmet = require('helmet'); // used for HTTP headers [Third party - Middleware]
 const courses = require('./routes/courses');
+const asyncDemo = require('./routes/asinc_demo');
 const express = require ('express');
 const app = express();
 
@@ -68,6 +69,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use(helmet());
 app.use('/api/courses', courses);
+app.use('/api/asyncDemo', asyncDemo);
 
 if (app.get('env') === 'development'){
     app.use(morgan('tiny'));
