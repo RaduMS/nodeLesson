@@ -1,13 +1,6 @@
 console.log("ceva");
 // console.log( module);
 
-// var logger = require('./logger');
-//
-// console.log(logger);
-// logger.log('asta a fost logat de logger');
-
-// ======================================
-
 // const path = require('path');
 //
 // var pathObj = path.parse(__filename);
@@ -27,13 +20,6 @@ console.log("ceva");
 //    else console.log('results', files)
 // });
 
-// ====================================
-//
-// var logger = require('./logger');
-//
-// console.log(logger);
-// logger.log('asta a fost logat de logger');
-
 // ================= Buidl APIs whit Node and Express =======================
 
 
@@ -48,28 +34,32 @@ const morgan = require('morgan'); // used to log HTTP request [Third party - Mid
 const helmet = require('helmet'); // used for HTTP headers [Third party - Middleware]
 const courses = require('./routes/courses');
 const asyncDemo = require('./routes/asinc_demo');
+const mongoDemo = require('./routes/mongo_demo');
+const mongoExercise1 = require('./routes/mongo_exercise');
 const express = require ('express');
 const app = express();
 
 var logger = require('./middleware/logger');
 console.log(logger);
+logger.log('asta a fost logat de logger');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-console.log(`app: ${app.get('env')}`);
-console.log(`Application Name: ${config.get('name')}`);
-console.log(`Application mail: ${config.get('mail.hoast')}`);
-console.log(`Application password: ${config.get('mail.password')}`);
+// console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+// console.log(`app: ${app.get('env')}`);
+// console.log(`Application Name: ${config.get('name')}`);
+// console.log(`Application mail: ${config.get('mail.hoast')}`);
+// console.log(`Application password: ${config.get('mail.password')}`);
 
-logger.log('asta a fost logat de logger');
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use(helmet());
 app.use('/api/courses', courses);
 app.use('/api/asyncDemo', asyncDemo);
+app.use('/api/mongoDemo', mongoDemo);
+app.use('/api/mongoExercise1', mongoExercise1);
 
 if (app.get('env') === 'development'){
     app.use(morgan('tiny'));

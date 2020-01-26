@@ -1,1 +1,6 @@
-- use callback , promise and async and await
+- use mongoose, mongo db and mongo compass
+- use schema
+- use comparison query operators
+- use logical query operators
+- use regular expresion
+- perform CRUD operation
