@@ -36,12 +36,13 @@ const courses = require('./routes/courses');
 const asyncDemo = require('./routes/asinc_demo');
 const mongoDemo = require('./routes/mongo_demo');
 const mongoExercise1 = require('./routes/mongo_exercise');
+const mongoDataValidation = require('./routes/mongo_data_validation');
 const express = require ('express');
 const app = express();
 
 var logger = require('./middleware/logger');
-console.log(logger);
-logger.log('asta a fost logat de logger');
+// console.log(logger);
+// logger.log('asta a fost logat de logger');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -60,6 +61,7 @@ app.use('/api/courses', courses);
 app.use('/api/asyncDemo', asyncDemo);
 app.use('/api/mongoDemo', mongoDemo);
 app.use('/api/mongoExercise1', mongoExercise1);
+app.use('/api/mongoDataValidation', mongoDataValidation);
 
 if (app.get('env') === 'development'){
     app.use(morgan('tiny'));

@@ -11,5 +11,7 @@ set app_NODE_ENV=development => [pnetru a seta variabile globale care nu se ames
 set DEBUG=app:startup,app:db => folosit pneturu debuger in node, daca vrei sa pui mai multe pui virgula intre ele
 set DEBUG=app:* => folosesti * pentru a loga toate cu app
 
+mongod => start database server
+
 mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray
 => inport -- numele bazi de date --  collection -- ? -- numele fisierului inportat  -- pentru ca jsounl e un array

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', function (req, res) {
 
-    mongoose.connect('mongodb://localhost/mongo-exercises')
+    mongoose.connect('mongodb://localhost/mongo-exercises',  {useUnifiedTopology: true, useNewUrlParser: true})
         .then(()=> console.log('Connected to MongoDB'))
         .catch(err => console.log('Could not connect to MongoDB:',err));
 
